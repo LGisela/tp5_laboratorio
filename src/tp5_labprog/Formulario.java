@@ -3,30 +3,22 @@ package tp5_labprog;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Set;
 
 
 public class Formulario extends javax.swing.JFrame {
-  
-    private Directorio directorio;
-    private Long telefono = null;
-
-    
-    public Formulario() {
-     
-      initComponents(); 
-       
-          directorio = new Directorio();
-    }
+ private Directorio directorio;
+        private Long telefonoActual = null;
    
-     
-    public void setDirectorio(Directorio directorio) {
-        this.directorio= directorio;
+   
+    public Formulario() {
+        this.directorio = new Directorio();
+          initComponents();
         
     }
+
+    
+
+    
 
 
     @SuppressWarnings("unchecked")
@@ -205,15 +197,15 @@ public class Formulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void JBBUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBBUSCARActionPerformed
          
-        buscar();
         
+        buscarContacto();
          
          
     }//GEN-LAST:event_JBBUSCARActionPerformed
 
     
     private void JBNUEVOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNUEVOActionPerformed
-         nuevoContacto();
+         nuevoFormulario();
     }//GEN-LAST:event_JBNUEVOActionPerformed
 
     private void JBBORRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBBORRARActionPerformed
@@ -236,7 +228,7 @@ public class Formulario extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
+      
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -260,22 +252,16 @@ public class Formulario extends javax.swing.JFrame {
         //</editor-fold>
 
        
-       
+            Directorio directorio = new Directorio();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-                
                 new Formulario().setVisible(true);
-            
               
             }
         });
         
         
-       }
-               
-
-               
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBBORRAR;
@@ -298,90 +284,42 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
-     
-    
-    private void buscar() {
-        
-        if (! JTTELEFONO.getText().isEmpty()) {
-            buscarContactoxtelefono();
-        } 
-       
-        else if (!JTCIUDAD.getText().isEmpty()) {
-            Buscarcontactoxciudad();
-        }
-       
-        else if (!JTAPELLIDO.getText().isEmpty()) {
-            buscartelefonoxapellido();
-        } 
-        else {
-            JOptionPane.showMessageDialog(this, "Ingrese un valor para buscar.");
-        }
-    }
-    private void buscarContactoxtelefono() {
+
+    private void buscarContacto() {
         try {
+            String telefonoTexto = JTTELEFONO.getText();
             
+            if (telefonoTexto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar un número de teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             
-             Long telefono = Long.parseLong(JTTELEFONO.getText());
+             Long telefono = Long.parseLong(telefonoTexto);
             Contacto contacto = directorio.BuscarContacto(telefono);
-           
-            
-            if (contacto!= null) {
+            if (contacto != null) {
                 JTDNI.setText(contacto.getDni());
                 JTNOMBRE.setText(contacto.getNombre());
                 JTAPELLIDO.setText(contacto.getApellido());
                 JTDIRECCION.setText(contacto.getDireccion());
                 JTCIUDAD.setText(contacto.getCiudad());
-                contacto.setTelefono(contacto.getTelefono());
-            
-                 
+                 telefonoActual = telefono;
             } else {
-                JOptionPane.showMessageDialog(this, "Contacto no encontrado.") ; 
+                JOptionPane.showMessageDialog(this, "Contacto no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Número de teléfono inválido.");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Número de teléfono inválido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-        private void Buscarcontactoxciudad(){
-            
-         String ciudad = JTCIUDAD.getText();
-        ArrayList<Contacto> contactos = directorio.buscarContactos(ciudad);     
-        
-   if (contactos.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No se encontraron contactos en la ciudad.");
-        } else {
-            StringBuilder result = new StringBuilder("Contactos en " + ciudad );
-            for (Contacto contacto : contactos) {
-                result.append(contacto).append("\n");
-            }
-            JOptionPane.showMessageDialog(this, result.toString());
-        }
-        
-        }
-         private void buscartelefonoxapellido() {
-        String apellido = JTAPELLIDO.getText();
-        Set<Long> telefonos = directorio.buscarTelefono(apellido);
-        if (telefonos.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No se encontraron teléfonos para el apellido.");
-        } else {
-            StringBuilder result = new StringBuilder("Teléfonos para el apellido " + apellido );
-            for (Long telefono : telefonos) {
-                result.append(telefono).append("\n");
-            }
-            JOptionPane.showMessageDialog(this, result.toString());
-        }
-    }
-        
 
-
-    private void nuevoContacto() {
+    private void nuevoFormulario() {
         JTDNI.setText("");
         JTNOMBRE.setText("");
         JTAPELLIDO.setText("");
         JTDIRECCION.setText("");
         JTCIUDAD.setText("");
         JTTELEFONO.setText("");
-    
+    telefonoActual = null;
+         
         
     }
 
@@ -392,37 +330,42 @@ public class Formulario extends javax.swing.JFrame {
             String apellido = JTAPELLIDO.getText();
             String direccion = JTDIRECCION.getText();
             String ciudad = JTCIUDAD.getText();
-            Long telefono = Long.parseLong(JTTELEFONO.getText());
-            
-            Contacto contacto = new Contacto(dni, nombre, apellido, ciudad, direccion,telefono);
+            String telefonoTexto = JTTELEFONO.getText();
+             if (telefonoTexto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar un número de teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Long telefono = Long.parseLong(telefonoTexto);
+            Contacto contacto = new Contacto(dni, nombre, apellido, ciudad, direccion);
            
+
+            if (telefonoActual != null) {
                 
-                directorio.AgregarContacto(telefono, contacto);
-          
-            JOptionPane.showMessageDialog(this, "Contacto guardado ");
+                directorio.borrarcontacto(telefonoActual);
+            }
+
+            directorio.AgregarContacto(telefonoTexto, contacto);
+            JOptionPane.showMessageDialog(this, "Contacto guardado exitosamente.");
            
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Número de teléfono inválido.");
+            JOptionPane.showMessageDialog(this, "Número de teléfono inválido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void borrarContacto() {
-        try {
-            Long telefono = Long.parseLong(JTTELEFONO.getText());
-            directorio.borrarcontacto(telefono);
-            
-            nuevoContacto();
-        JOptionPane.showMessageDialog(this, "Contacto borrado");
-            
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(JTDNI, "numero invalido");
+        if (telefonoActual != null) {
+            directorio.borrarcontacto(telefonoActual);
+            JOptionPane.showMessageDialog(this, "Contacto borrado exitosamente.");
+            nuevoFormulario();
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay contacto para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void salir() {
-        dispose();
+        System.exit(0);
     }
 
         }
-
  
