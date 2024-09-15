@@ -10,13 +10,20 @@ public class Directorio {
     private TreeMap<Long, Contacto> contactos = new TreeMap<>();
   
     
-    public void AgregarContacto(String telefono,Contacto contacto){
-         contactos.get(telefono);
-    
+//   public void AgregarContacto(String telefono,Contacto contacto){
+//         contactos.get(telefono);
+//    }
+   
+   
+
+    public void AgregarContacto(Long telefono, Contacto contacto) {
+        contactos.put(telefono, contacto);
     }
-    public Contacto BuscarContacto(long telefono){
-        return contactos.get(telefono);
+     
     
+    public Contacto BuscarContacto(long telefono){
+       return contactos.get(telefono);
+      
     }
     
     public Set<Long> buscarTelefono(String apellido) {

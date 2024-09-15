@@ -9,10 +9,13 @@ public class Formulario extends javax.swing.JFrame {
  private Directorio directorio;
         private Long telefonoActual = null;
    
+        Directorio d = new Directorio();
    
-    public Formulario() {
-        this.directorio = new Directorio();
+    public Formulario(Directorio dir) {
+       // this.directorio = new Directorio();
           initComponents();
+          d= dir;
+          
         
     }
 
@@ -227,41 +230,41 @@ public class Formulario extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-      
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-       
-            Directorio directorio = new Directorio();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Formulario().setVisible(true);
-              
-            }
-        });
-        
-        
-    }
+//    public static void main(String args[]) {
+//      
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//       
+//            Directorio directorio = new Directorio();
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Formulario().setVisible(true);
+//              
+//            }
+//        });
+//        
+//        
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBBORRAR;
@@ -294,18 +297,22 @@ public class Formulario extends javax.swing.JFrame {
                 return;
             }
             
-             Long telefono = Long.parseLong(telefonoTexto);
-            Contacto contacto = directorio.BuscarContacto(telefono);
-            if (contacto != null) {
-                JTDNI.setText(contacto.getDni());
-                JTNOMBRE.setText(contacto.getNombre());
-                JTAPELLIDO.setText(contacto.getApellido());
-                JTDIRECCION.setText(contacto.getDireccion());
-                JTCIUDAD.setText(contacto.getCiudad());
-                 telefonoActual = telefono;
-            } else {
+            Long telefono = Long.parseLong(telefonoTexto);
+            
+            Contacto contactoEncontrado = d.BuscarContacto(telefono);
+
+            if (contactoEncontrado != null){
+                JTDNI.setText(contactoEncontrado.getDni());
+                JTNOMBRE.setText(contactoEncontrado.getNombre());
+                JTAPELLIDO.setText(contactoEncontrado.getApellido());
+                JTDIRECCION.setText(contactoEncontrado.getDireccion());
+                JTCIUDAD.setText(contactoEncontrado.getCiudad());
+            }
+            else{
                 JOptionPane.showMessageDialog(this, "Contacto no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
+              
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Número de teléfono inválido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -324,33 +331,56 @@ public class Formulario extends javax.swing.JFrame {
     }
 
     private void guardarContacto() {
-        try {
-            String dni = JTDNI.getText();
-            String nombre = JTNOMBRE.getText();
-            String apellido = JTAPELLIDO.getText();
-            String direccion = JTDIRECCION.getText();
-            String ciudad = JTCIUDAD.getText();
-            String telefonoTexto = JTTELEFONO.getText();
-             if (telefonoTexto.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe ingresar un número de teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+//        try {
+//            String dni = JTDNI.getText();
+//            String nombre = JTNOMBRE.getText();
+//            String apellido = JTAPELLIDO.getText();
+//            String direccion = JTDIRECCION.getText();
+//            String ciudad = JTCIUDAD.getText();
+//            String telefonoTexto = JTTELEFONO.getText();
+//             if (telefonoTexto.isEmpty()) {
+//                JOptionPane.showMessageDialog(this, "Debe ingresar un número de teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//
+//            Long telefono = Long.parseLong(telefonoTexto);
+//            Contacto contacto = new Contacto(dni, nombre, apellido, ciudad, direccion);
+//           
+//
+//            if (telefonoActual != null) {
+//                
+//                directorio.borrarcontacto(telefonoActual);
+//            }
+//
+//            directorio.AgregarContacto(telefonoTexto, contacto);
+//            JOptionPane.showMessageDialog(this, "Contacto guardado exitosamente.");
+//           
+//        } catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(this, "Número de teléfono inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
 
-            Long telefono = Long.parseLong(telefonoTexto);
-            Contacto contacto = new Contacto(dni, nombre, apellido, ciudad, direccion);
-           
-
-            if (telefonoActual != null) {
-                
-                directorio.borrarcontacto(telefonoActual);
-            }
-
-            directorio.AgregarContacto(telefonoTexto, contacto);
-            JOptionPane.showMessageDialog(this, "Contacto guardado exitosamente.");
-           
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Número de teléfono inválido.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+          try{
+              String dni = JTDNI.getText();
+              String nombre = JTNOMBRE.getText();
+              String apellido = JTAPELLIDO.getText();
+              String direccion = JTDIRECCION.getText();
+              String ciudad = JTCIUDAD.getText();
+              String telefonoTexto = JTTELEFONO.getText();
+              
+              if(telefonoTexto.isEmpty()){
+                  JOptionPane.showMessageDialog(this, "Debe ingresar un número de teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
+                          
+              }
+              
+              Contacto contacto = new Contacto(dni, nombre, apellido, ciudad, direccion);        
+              System.out.println(contacto);
+              
+              d.AgregarContacto(Long.valueOf(telefonoTexto), contacto);
+              System.out.println(d);
+              
+          } catch (NumberFormatException ex){
+              JOptionPane.showMessageDialog(this, "Número de teléfono inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+          }
     }
 
     private void borrarContacto() {

@@ -17,15 +17,26 @@ public class Tp5_labprog {
     
     Contacto c2= new Contacto("146782342","juan","sosa","Mendoza","calle dorego");
     
-    directorio.AgregarContacto("15865386", c1);
-    directorio.AgregarContacto("146782342", c2);
+//    directorio.AgregarContacto("15865386", c1);
+//    directorio.AgregarContacto("146782342", c2);
+    
+    directorio.AgregarContacto(15865386L, c1);
+    directorio.AgregarContacto(146782342L, c2);
     
     directorio.BuscarContacto(15865386);
     directorio.buscarContactos("Sanluis");
     directorio.buscarTelefono("sosa");
     directorio.borrarcontacto(1467823421);
         System.out.println("nuevo directorio :" + directorio);
+        
+    Formulario form = new Formulario(directorio);
+    form.setVisible(true);
+    form.setLocationRelativeTo(null);
     
     }
+    
+    
+    
+    
     
 }
