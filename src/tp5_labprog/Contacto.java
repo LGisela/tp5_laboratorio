@@ -1,4 +1,3 @@
-
 package tp5_labprog;
 
 /**
@@ -6,19 +5,34 @@ package tp5_labprog;
  * @author HP-PAVILION
  */
 public class Contacto {
-    
+
+    private long telefono;
+
     private String dni;
     private String nombre;
     private String apellido;
     private String ciudad;
     private String direccion;
 
-    public Contacto(String dni, String nombre, String apellido, String ciudad, String direccion) {
+    public Contacto() {
+    }
+
+    
+    public Contacto(Long telefono,String dni, String nombre, String apellido, String ciudad, String direccion) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.ciudad = ciudad;
         this.direccion = direccion;
+        this.telefono = telefono;
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
     }
 
     public String getDni() {
@@ -43,10 +57,8 @@ public class Contacto {
 
     @Override
     public String toString() {
-        return "contacto : DNI=" + dni + "nombre :" +nombre + "apellido" + apellido +
-                "ciudad : " + ciudad + "direccion: " + direccion;
+        return "contacto : DNI=" + dni + "nombre :" + nombre + "apellido" + apellido
+                + "ciudad : " + ciudad + "direccion: " + direccion;
     }
-    
-    
-    
+
 }
