@@ -17,9 +17,18 @@ public class Tp5_labprog {
     
     Contacto c2= new Contacto(146782342L,"146782342","juan","sosa","Mendoza","calle dorego");
     
+    Contacto c3= new Contacto(196587432L,"196587432","gaston","frias","Merlo","calle lainez");
+    
+    Contacto c4= new Contacto(684932158L,"684932158","valentina","perez","bolivar","calle baigorria");
+    
+    
+    
 //    directorio.AgregarContacto("15865386", c1);
 //    directorio.AgregarContacto("146782342", c2);
-    
+//    directorio.AgregarContacto("196587432", c3);
+//    directorio.AgregarContacto("598743214", c4);  
+
+
     directorio.AgregarContacto(c1);
     directorio.AgregarContacto(c2);
     
