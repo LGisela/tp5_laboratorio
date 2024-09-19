@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="tp5_laboratorio">
+  <ClassDiagramComponents>
+    <Class name="Contacto" package="tp5_labprog" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="telefono" type="long" visibility="private"/>
+        <Field name="dni" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="ciudad" type="String" visibility="private"/>
+        <Field name="direccion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Long" name="telefono"/>
+          <Argument type="String" name="dni"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="ciudad"/>
+          <Argument type="String" name="direccion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTelefono" returnType="long" visibility="public"/>
+        <Method name="setTelefono" returnType="void" visibility="public">
+          <Argument type="long" name="telefono"/>
+        </Method>
+        <Method name="getDni" returnType="String" visibility="public"/>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="getCiudad" returnType="String" visibility="public"/>
+        <Method name="getDireccion" returnType="String" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Directorio" package="tp5_labprog" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="contactos" type="TreeMap&lt;Long, Contacto&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="AgregarContacto" returnType="void" visibility="public">
+          <Argument type="Contacto" name="contacto"/>
+        </Method>
+        <Method name="BuscarContacto" returnType="Contacto" visibility="public">
+          <Argument type="long" name="telefono"/>
+        </Method>
+        <Method name="buscarTelefono" returnType="Set&lt;Long&gt;" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="buscarContactos" returnType="ArrayList&lt;Contacto&gt;" visibility="public">
+          <Argument type="String" name="ciudad"/>
+        </Method>
+        <Method name="borrarcontacto" returnType="void" visibility="public">
+          <Argument type="long" name="telefono"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Formulario" package="tp5_labprog" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="directorio" type="Directorio" visibility="package"/>
+        <Field name="JBBORRAR" type="javax.swing.JButton" visibility="private"/>
+        <Field name="JBBUSCAR" type="javax.swing.JButton" visibility="private"/>
+        <Field name="JBGUARDAR" type="javax.swing.JButton" visibility="private"/>
+        <Field name="JBNUEVO" type="javax.swing.JButton" visibility="private"/>
+        <Field name="JBSALIR" type="javax.swing.JButton" visibility="private"/>
+        <Field name="JTAPELLIDO" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="JTCIUDAD" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="JTDIRECCION" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="JTDNI" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="JTNOMBRE" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="JTTELEFONO" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Directorio" name="directorio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="JBBUSCARActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="JBNUEVOActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="JBBORRARActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="JBSALIRActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="JTDNIActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="JBGUARDARActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="nuevoFormulario" returnType="void" visibility="private"/>
+        <Method name="guardarContacto" returnType="void" visibility="private"/>
+        <Method name="salir" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="Tp5_labprog" package="tp5_labprog" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="tp5_labprog.Directorio" target="tp5_labprog.Contacto" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="contactos" source="tp5_labprog.Directorio" target="tp5_labprog.Contacto" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="TreeMap&lt;Long, Contacto&gt;"/>
+    <HasRelation name="directorio" source="tp5_labprog.Formulario" target="tp5_labprog.Directorio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
