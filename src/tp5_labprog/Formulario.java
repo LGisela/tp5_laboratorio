@@ -268,44 +268,7 @@ public class Formulario extends javax.swing.JFrame {
         guardarContacto();
     }//GEN-LAST:event_JBGUARDARActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//      
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//       
-//            Directorio directorio = new Directorio();
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Formulario().setVisible(true);
-//              
-//            }
-//        });
-//        
-//        
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBBORRAR;
@@ -329,35 +292,7 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-//    private void buscarContacto() {
-//        try {
-//            String telefonoTexto = JTTELEFONO.getText();
-//            
-//            if (telefonoTexto.isEmpty()) {
-//                JOptionPane.showMessageDialog(this, "Debe ingresar un número de teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
-//                return;
-//            }
-//            
-//            Long telefono = Long.parseLong(telefonoTexto);
-//            
-//            Contacto contactoEncontrado = directorio.BuscarContacto(telefono);
-//
-//            if (contactoEncontrado != null){
-//                JTDNI.setText(contactoEncontrado.getDni());
-//                JTNOMBRE.setText(contactoEncontrado.getNombre());
-//                JTAPELLIDO.setText(contactoEncontrado.getApellido());
-//                JTDIRECCION.setText(contactoEncontrado.getDireccion());
-//                JTCIUDAD.setText(contactoEncontrado.getCiudad());
-//            }
-//            else{
-//                JOptionPane.showMessageDialog(this, "Contacto no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//
-//              
-//        } catch (NumberFormatException ex) {
-//            JOptionPane.showMessageDialog(this, "Número de teléfono inválido.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
+
     private void nuevoFormulario() {
         JTDNI.setText("");
         JTNOMBRE.setText("");
@@ -387,15 +322,7 @@ public class Formulario extends javax.swing.JFrame {
         }
     }
 
-//    private void borrarContacto() {
-//        if (telefonoActual != null) {
-//            directorio.borrarcontacto(telefonoActual);
-//            JOptionPane.showMessageDialog(this, "Contacto borrado exitosamente.");
-//            nuevoFormulario();
-//        } else {
-//            JOptionPane.showMessageDialog(this, "No hay contacto para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
+
     private void salir() {
         System.exit(0);
     }

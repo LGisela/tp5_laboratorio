@@ -1,9 +1,6 @@
 package tp5_labprog;
 
-/**
- *
- * @author HP-PAVILION
- */
+
 public class Contacto {
 
     private long telefono;

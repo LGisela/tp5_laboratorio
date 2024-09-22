@@ -1,15 +1,10 @@
 
 package tp5_labprog;
 
-/**
- *
- * @author HP-PAVILION
- */
+
 public class Tp5_labprog {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
     Directorio directorio=new Directorio();
     
@@ -21,12 +16,6 @@ public class Tp5_labprog {
     
     Contacto c4= new Contacto(684932158L,"684932158","valentina","perez","bolivar","calle baigorria");
     
-    
-    
-//    directorio.AgregarContacto("15865386", c1);
-//    directorio.AgregarContacto("146782342", c2);
-//    directorio.AgregarContacto("196587432", c3);
-//    directorio.AgregarContacto("598743214", c4);  
 
 
     directorio.AgregarContacto(c1);
